@@ -35,7 +35,7 @@ The .csv file should be placed in the same directory as the plugin and named shi
 This project is licensed under the MIT License. For more details, please see the LICENSE file.
 
 ## Heads Up!
-Hey there! I've put together this WooCommerce plugin to help you calculate your shipping costs on WooCommerce. I think it's pretty neat, but keep in mind it's not perfect.
+I've put together this WooCommerce plugin to help you calculate your shipping costs on WooCommerce. I think it's pretty neat, but keep in mind it's not perfect.
 Please use this tool responsibly and understand that I can't be held accountable for any errors or problems you might run into. While I've done my best to make sure it's working properly, I can't make any guarantees.
 Remember, you're using this plugin at your own risk. I'm sharing it to help out, but you're responsible for making sure it fits your needs.
 
