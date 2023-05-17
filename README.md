@@ -1,17 +1,17 @@
-#Perseo Custom Shipping Cost
+# Perseo Custom Shipping Cost
 This is a WooCommerce shipping plugin that calculates shipping costs based on postal codes and weights.
 
-##Description
+## Description
 The Perseo Custom Shipping Cost plugin uses a .csv file to retrieve shipping costs based on the destination postal code and the total weight of the cart. The plugin supports multiple weights and postal codes, allowing for a wide range of shipping cost configurations.
 
-##How to install
+## How to install
 Download the latest version of the plugin.
 Go to your WordPress Dashboard and navigate to Plugins > Add New.
 Click on the 'Upload Plugin' button at the top of the page.
 Select the downloaded .zip file and click on 'Install Now'.
 Once installed, click on 'Activate Plugin'.
 
-##CSV File Format
+## CSV File Format
 The .csv file used by the plugin should be formatted as follows:
 
 `Paese;Zip/Postal Code From;Zip/Postal Code To;Weight From;Weight To;Prezzo Spedizione;`
@@ -27,8 +27,8 @@ Each row represents a different shipping cost configuration, with the following 
 
 The .csv file should be placed in the same directory as the plugin and named shipping_data.csv.
 
-##License
+## License
 This project is licensed under the MIT License. For more details, please see the LICENSE file.
 
-##Author
+## Author
 Giovanni Manetti
