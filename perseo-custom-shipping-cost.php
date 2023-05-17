@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Perseo Custom Shipping Cost
-Plugin URI: https://dev.perseodesign.com
+Plugin URI: https://github.com/giovannimanetti11/perseo-custom-shipping-cost
 Description: A WooCommerce shipping plugin that calculates shipping costs based on postal codes and weights.
 Version: 0.1
 Author: Giovanni Manetti
@@ -88,8 +88,6 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
                     // Set the default shipping cost
                     $shipping_cost = 20.00;
                 
-                    // Debug: Log the input values
-                    error_log("Input values - Country: $country, Postcode: $postcode, Weight: $weight");
 
                     foreach ($data as $row) {
                         error_log(print_r($row, true));
@@ -107,8 +105,7 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
                             $shipping_cost_row['Zip/Postal Code To'] >= $postcode &&
                             floatval(str_replace(",", ".", $shipping_cost_row['Weight From'])) <= $weight &&
                             floatval(str_replace(",", ".", $shipping_cost_row['Weight To'])) >= $weight) {
-                            // Debug: Log the matched row
-                            error_log("Matched row with postcode and weight: " . print_r($shipping_cost_row, true));
+
                             return floatval(str_replace(",", ".", $shipping_cost_row['Prezzo Spedizione']));
                         }
                     }
@@ -120,22 +117,15 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
                             empty($shipping_cost_row['Zip/Postal Code To']) &&
                             floatval(str_replace(",", ".", $shipping_cost_row['Weight From'])) <= $weight &&
                             floatval(str_replace(",", ".", $shipping_cost_row['Weight To'])) >= $weight) {
-                            // Debug: Log the matched row
-                            error_log("Matched row with weight (no postcode): " . print_r($shipping_cost_row, true));
+
                             return floatval(str_replace(",", ".", $shipping_cost_row['Prezzo Spedizione']));
                         }
                     }
                 
-                    // Debug: Log if no match is found
-                    error_log("No match found, returning default shipping cost");
                 
                     // Finally, return the default shipping cost if no match is found
                     return $shipping_cost;
-                }
-                
-                
-
-                                                        
+                }               
             }
         }
     }
