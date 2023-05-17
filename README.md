@@ -36,4 +36,5 @@ This project is licensed under the MIT License. For more details, please see the
 
 ## Author
 [Giovanni Manetti](https://github.com/giovannimanetti11)
+
 [LinkedIn](https://www.linkedin.com/in/giovannimanetti/)
