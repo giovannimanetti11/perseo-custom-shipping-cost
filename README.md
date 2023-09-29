@@ -13,7 +13,10 @@ The Perseo Custom Shipping Cost plugin uses a .csv file to retrieve shipping cos
 3. Click on the 'Upload Plugin' button at the top of the page.
 4. Select the downloaded .zip file and click on 'Install Now'.
 5. Once installed, click on 'Activate Plugin'.
+<<<<<<< HEAD
 6. Once activated, go to WooCommerce > Settings > Shipping and in the "Custom Shipping" tab Enable the shipping method.
+=======
+>>>>>>> 75732fc (Code slimming and duplicate removal)
 
 ## CSV File Format
 

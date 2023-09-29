@@ -3,7 +3,11 @@
 Plugin Name: Perseo Custom Shipping Cost
 Plugin URI: https://github.com/giovannimanetti11/perseo-custom-shipping-cost
 Description: A WooCommerce shipping plugin that calculates shipping costs based on postal codes and weights.
+<<<<<<< HEAD
 Version: 0.1
+=======
+Version: 0.1.2
+>>>>>>> 75732fc (Code slimming and duplicate removal)
 Author: Giovanni Manetti
 Author URI: https://github.com/giovannimanetti11
 */
@@ -17,12 +21,27 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
     function perseo_shipping_method_init() {
         if (!class_exists('WC_Perseo_Shipping_Method')) {
             class WC_Perseo_Shipping_Method extends WC_Shipping_Method {
+<<<<<<< HEAD
+=======
+                // Property definitions to avoid PHP deprecated errors.
+                public $plugin_file;
+                public $payment_methods_store;
+                public $cache_time;
+                public $error_cache_time;
+                public $tracks;
+                public $label_reports;
+
+>>>>>>> 75732fc (Code slimming and duplicate removal)
                 public function __construct() {
                     $this->id                 = 'perseo_shipping';
                     $this->method_title       = __('Custom shipping', 'perseo-custom-shipping-cost');
                     $this->method_description = __('Shipping method adjusted by postal code and weight', 'perseo-custom-shipping-cost');
                     $this->enabled            = $this->get_option('enabled', 'no');
+<<<<<<< HEAD
                     $this->title              = "Custom shipping";
+=======
+                    $this->title              = "Corriere Espresso";
+>>>>>>> 75732fc (Code slimming and duplicate removal)
                 
                     $this->init();
                 }
@@ -41,21 +60,32 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
                             'label' => __('Enable this shipping method', 'woocommerce'),
                             'default' => 'no'
                         ),
+<<<<<<< HEAD
                         
+=======
+>>>>>>> 75732fc (Code slimming and duplicate removal)
                     );
                 }
 
                 function calculate_shipping($package = array()) {
+<<<<<<< HEAD
 
                     if ($this->enabled == 'no') {
                         return;
                     }
 
                     
+=======
+                    if ($this->enabled == 'no') {
+                        return;
+                    }
+                
+>>>>>>> 75732fc (Code slimming and duplicate removal)
                     $weight = 0;
                     $cost = 0;
                     $country = $package["destination"]["country"];
                     $postcode = $package["destination"]["postcode"];
+<<<<<<< HEAD
 
                     foreach ($package['contents'] as $item_id => $values) {
                         $_product = $values['data'];
@@ -73,6 +103,31 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
 
                     $this->add_rate($rate);
                 }
+=======
+                
+                    foreach ($package['contents'] as $item_id => $values) {
+                        $_product = $values['data'];
+                
+                        $product_weight = $_product->get_weight();
+                        if (is_null($product_weight) || !is_numeric($product_weight)) {
+                            $product_weight = 0;
+                        }
+                
+                        $weight += $product_weight * $values['quantity'];
+                    }
+                
+                    $cost = $this->get_shipping_cost($country, $postcode, $weight);
+                
+                    $rate = array(
+                        'id' => $this->id,
+                        'label' => $this->title,
+                        'cost' => $cost
+                    );                    
+                
+                    $this->add_rate($rate);
+                }
+                
+>>>>>>> 75732fc (Code slimming and duplicate removal)
 
                 function get_shipping_cost($country, $postcode, $weight) {
                     $csvFile = plugin_dir_path(__FILE__) . 'shipping_data.csv';
@@ -81,6 +136,7 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
                 
                     $data = [];
                     while (($row = fgetcsv($file, 0, ';')) !== FALSE) {
+<<<<<<< HEAD
                         $data[] = array_combine($headers, $row);
                     }
                     fclose($file);
@@ -125,6 +181,30 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
                 
                     // Finally, return the default shipping cost if no match is found
                     return $shipping_cost;
+=======
+                        if (count($row) == count($headers)) {  // Controllo aggiunto
+                            $data[] = array_combine($headers, $row);
+                        }
+                    }
+                    fclose($file);
+
+                    // Default shipping cost
+                    $cost = 20.00;
+
+                    foreach ($data as $row) {
+                        if ($country === $row["Paese"] && 
+                            floatval(str_replace(",", ".", $row["Weight From"])) <= $weight && 
+                            floatval(str_replace(",", ".", $row["Weight To"])) >= $weight) {
+                            if (empty($row["Zip/Postal Code From"]) || 
+                                ($postcode >= $row["Zip/Postal Code From"] && $postcode <= $row["Zip/Postal Code To"])) {
+                                $cost = floatval(str_replace(",", ".", $row["Prezzo Spedizione"]));
+                                break;
+                            }
+                        }
+                    }
+
+                    return $cost;
+>>>>>>> 75732fc (Code slimming and duplicate removal)
                 }               
             }
         }
